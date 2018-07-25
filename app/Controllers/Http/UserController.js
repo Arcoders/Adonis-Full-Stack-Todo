@@ -25,7 +25,7 @@ class UserController {
             username: email
         })
 
-        return user
+        return this.login(...arguments)
 
     }
     
