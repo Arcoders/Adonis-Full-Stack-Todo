@@ -9,7 +9,6 @@ class ProjectController {
     async index ({ auth }) {
 
         const user = await auth.getUser()
-
         return await user.projects().fetch()
 
     }
@@ -17,9 +16,7 @@ class ProjectController {
     async create ({ auth, request }) {
 
         const { title} = request.post()
-
         const user = await auth.getUser()
-
         return  await user.projects().create({ title })
 
     }
@@ -27,11 +24,8 @@ class ProjectController {
     async destroy ({ auth, project }) {
 
         const user = await auth.getUser()
-    
         AuthorizationService.verifyPermission(project, user);
-
         await project.delete()
-
         return { message: 'This project has been deleted', project }
 
     }
