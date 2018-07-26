@@ -38,4 +38,23 @@ Route.patch('projects/:projectId', 'ProjectController.update')
      .middleware('auth')
      .bind('App/Models/Project', 'project', 'projectId', '_id')
 
+
+// Tasks -------------------------------------------------------
+
+Route.get('projects/:projectId/tasks', 'TaskController.index')
+  .middleware('auth')
+  .bind('App/Models/Project', 'project', 'projectId', '_id')
+
+Route.post('projects/:projectId/tasks', 'TaskController.create')
+     .middleware('auth')
+     .bind('App/Models/Project', 'project', 'projectId', '_id')
+
+Route.patch('tasks/:taskId', 'TaskController.update')
+    .middleware('auth')
+    .bind('App/Models/Task', 'task', 'taskId', '_id')
+
+Route.delete('tasks/:taskId', 'TaskController.destroy')
+    .middleware('auth')
+    .bind('App/Models/Task', 'task', 'taskId', '_id')
+
 }).prefix('api')
