@@ -34,4 +34,8 @@ Route.delete('projects/:projectId', 'ProjectController.destroy')
      .middleware('auth')
      .bind('App/Models/Project', 'project', 'projectId', '_id')
 
+Route.patch('projects/:projectId', 'ProjectController.update')
+     .middleware('auth')
+     .bind('App/Models/Project', 'project', 'projectId', '_id')
+
 }).prefix('api')
