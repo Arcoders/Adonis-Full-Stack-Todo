@@ -1,18 +1,41 @@
 <template>
-  <div class="home">
-    <img src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+
+  <v-container>
+    <v-layout>
+
+      <v-flex xs4>
+        <Projects></Projects>
+      </v-flex>
+
+      <v-flex xs8 class="pl-4">
+        <Panel title="Tasks"></Panel>
+      </v-flex>
+
+    </v-layout>
+  </v-container>
+
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+
+import Projects from '@/components/Projects.vue';
+import { mapGetters } from 'vuex';
+import router from '../router';
 
 export default {
-  name: 'home',
-  components: {
-    HelloWorld,
+
+  components: { Projects },
+
+  mounted() {
+    if (!this.isLoggedIn) return router.push('/login');
   },
+
+  computed: {
+
+    ...mapGetters('authentication', ['isLoggedIn']),
+
+  },
+
 };
+
 </script>
