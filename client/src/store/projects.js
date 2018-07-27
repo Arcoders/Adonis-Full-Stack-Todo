@@ -1,13 +1,14 @@
 /* eslint-disable */
 
+import Vue from 'vue';
 import Axios from '../http';
-import router from '../router';
 
 export default {
     namespaced: true,
     state: {
         projects: [],
         newProjectName: null,
+        isEditMode: false,
     },
     actions: {
         fetchProjects({ commit }) {
@@ -35,7 +36,11 @@ export default {
         },
         setProjects(state, projects) {
             state.projects = projects;
-        }
+        },
+        toggleEdit(state, project) {
+            state.isEditMode = !state.isEditMode;
+            Vue.set(project, 'isEditMode', state.isEditMode);
+        },
     },
     getters: {
         
