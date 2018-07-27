@@ -21,11 +21,15 @@
 import { mapMutations, mapState, mapActions } from 'vuex';
 
 export default {
+
+    mounted () {
+        this.fetchProjects();
+    },
   
     methods: {
 
         ...mapMutations('projects', ['setNewProjectName']),
-        ...mapActions('projects', ['createProject']),
+        ...mapActions('projects', ['createProject', 'fetchProjects']),
 
     },
 

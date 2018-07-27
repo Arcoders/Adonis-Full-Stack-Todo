@@ -10,6 +10,12 @@ export default {
         newProjectName: null,
     },
     actions: {
+        fetchProjects({ commit }) {
+            return Axios().get('/projects')
+            .then(({ data }) => {
+                commit('setProjects', data);
+            })
+        },
         createProject({ commit, state }) {
             return Axios().post('/projects', {
                 title: state.newProjectName,
@@ -26,6 +32,9 @@ export default {
         },
         appendProject(state, project) {
             state.projects.push(project);
+        },
+        setProjects(state, projects) {
+            state.projects = projects;
         }
     },
     getters: {
