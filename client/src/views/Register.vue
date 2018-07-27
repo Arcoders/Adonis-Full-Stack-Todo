@@ -7,6 +7,9 @@
                 <h1>Register</h1>
                 <v-text-field @input="setRegisterEmail" :value="registerEmail" lable="email" placeholder="Email"></v-text-field>
                 <v-text-field @input="setRegisterPassword" :value="registerPassword" lable="Password" placeholder="Password" type="password"></v-text-field>
+                <v-alert type="error" :value="registerError">
+                    {{registerError}}
+                </v-alert>
                 <v-btn color="green" dark @click="register" >
                     <v-icon class="mr-2">account_circle</v-icon>
                     Register
@@ -30,7 +33,7 @@ export default {
     },
 
     computed: {
-        ...mapState('authentication', ['registerEmail', 'registerPassword'])
+        ...mapState('authentication', ['registerEmail', 'registerPassword', 'registerError'])
     }
 
 }

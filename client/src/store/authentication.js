@@ -8,6 +8,7 @@ export default {
     state: {
         registerEmail: null,
         registerPassword: null,
+        registerError: null,
         token: null
     },
     actions: {
@@ -18,8 +19,12 @@ export default {
             })
             .then(({ data }) => {
                 commit('setToken', data.token);
+                commit('setRegisterError', null);
                 router.push('/')
             })
+            .catch(() => {
+                commit('setRegisterError', 'An error has occurred');
+            });
         }
     },
     mutations: {
@@ -31,6 +36,14 @@ export default {
         },
         setToken(state, token) {
             state.token = token;
+        },
+        setRegisterError(state, error) {
+            state.registerError = error;
+        },
+    },
+    getters: {
+        isLoggedIn(state) {
+            return !!state.token;
         }
     },
 };
