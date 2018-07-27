@@ -25,7 +25,11 @@ export default {
             .catch(() => {
                 commit('setRegisterError', 'An error has occurred');
             });
-        }
+        },
+        logout({ commit }) {
+            commit('setToken', null);
+            router.push('/login');
+        },
     },
     mutations: {
         setRegisterEmail(state, email) {
