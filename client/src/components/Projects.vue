@@ -5,12 +5,13 @@
         <div v-for="project in projects" :key="project._id" class="mb-4">
             <v-layout row wrap>
                 <v-flex xs9 class="text-xs-left"> 
-                    <v-text-field v-if="project.isEditMode" :value="project.title"></v-text-field>
+                    <v-text-field @input="setProjectTitle({project, title: $event})" v-if="project.isEditMode" :value="project.title" autofocus></v-text-field>
                     <span v-else>{{ project.title }}</span>
                 </v-flex>
                 <v-flex xs3 class="text-xs-right">
-                    <v-icon v-if="project.isEditMode" @click="toggleEdit(project)">check</v-icon>
+                    <v-icon v-if="project.isEditMode" @click="saveProject(project)">check</v-icon>
                     <v-icon v-else @click="toggleEdit(project)">edit</v-icon>
+                    <v-icon v-if="!project.isEditMode" @click="deleteProject(project)" class="ml-2">delete</v-icon>
                 </v-flex>
             </v-layout>
         </div>
@@ -37,8 +38,8 @@ export default {
   
     methods: {
 
-        ...mapMutations('projects', ['setNewProjectName', 'toggleEdit']),
-        ...mapActions('projects', ['createProject', 'fetchProjects']),
+        ...mapMutations('projects', ['setProjectTitle', 'setNewProjectName', 'toggleEdit']),
+        ...mapActions('projects', ['deleteProject', 'saveProject', 'createProject', 'fetchProjects']),
 
     },
 

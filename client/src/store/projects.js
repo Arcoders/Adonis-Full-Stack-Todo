@@ -25,7 +25,19 @@ export default {
                 commit('appendProject', data);
                 commit('setNewProjectName', null);
             });
-        }
+        },
+        saveProject({ commit }, project) {
+            return Axios().patch(`projects/${project._id}`, project)
+            .then(() => {
+                commit('toggleEdit', project);
+            });
+        },
+        deleteProject({ commit }, project) {
+            return Axios().delete(`projects/${project._id}`)
+            .then(() => {
+                commit('removeProject', project);
+            });
+        },
     },
     mutations: {
         setNewProjectName(state, name) {
@@ -37,9 +49,15 @@ export default {
         setProjects(state, projects) {
             state.projects = projects;
         },
+        setProjectTitle(state, { project, title }) {
+            project.title = title;
+        },
         toggleEdit(state, project) {
             state.isEditMode = !state.isEditMode;
             Vue.set(project, 'isEditMode', state.isEditMode);
+        },
+        removeProject(state, project) {
+            state.projects.splice(state.projects.indexOf(project), 1);
         },
     },
     getters: {
