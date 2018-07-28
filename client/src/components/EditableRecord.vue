@@ -2,6 +2,7 @@
 
     <v-layout row wrap>
         <v-flex xs9 class="text-xs-left"> 
+            <slot></slot>
             <v-text-field 
             v-if="isEditMode"
             @input="$emit('onInput', $event)"  

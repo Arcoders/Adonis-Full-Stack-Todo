@@ -12,8 +12,13 @@
                 @onEdit="toggleEdit(task)"
                 @onSave="saveTask(task)"
                 @onDelete="deleteTask(task)"
-                @onClick="taskClicked(task)"
-            />
+                @onClick="taskClicked(task)">
+
+                <v-icon @click="checkClicked(task)" class="mr-2">
+                   {{ task.completed ? 'check_box' : 'check_box_outline_blank' }} 
+                </v-icon>   
+
+            </EditableRecord>
 
         </div>
 
@@ -42,7 +47,12 @@ export default {
     methods: {
 
         ...mapActions('tasks', ['createTask', 'deleteTask', 'saveTask']),
-        ...mapMutations('tasks', ['setNewTaskName', 'setTaskDescription', 'toggleEdit']),
+        ...mapMutations('tasks', ['setNewTaskName', 'setTaskDescription', 'toggleEdit', 'toggleCompleted']),
+
+        checkClicked(task) {
+            this.toggleCompleted(task);
+            this.saveTask({task, updateCheckbox: true});
+        }
 
     },
 

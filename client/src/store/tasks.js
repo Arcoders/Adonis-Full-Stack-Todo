@@ -26,10 +26,10 @@ export default {
                 commit('setNewTaskName', null);
             });
         },
-        saveTask({ commit }, task) {
+        saveTask({ commit }, {task, updateCheckbox = false}) {
             return Axios().patch(`tasks/${task._id}`, task)
             .then(() => {
-                commit('toggleEdit', task);
+                if (!updateCheckbox) commit('toggleEdit', task);
             });
         },
         deleteTask({ commit }, task) {
@@ -58,6 +58,9 @@ export default {
         },
         removeTask(state, task) {
             state.tasks.splice(state.tasks.indexOf(task), 1);
+        },
+        toggleCompleted(state, task) {
+            task.completed = !task.completed;
         },
     },
     getters: {
