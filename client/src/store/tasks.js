@@ -26,6 +26,18 @@ export default {
                 commit('setNewTaskName', null);
             });
         },
+        saveTask({ commit }, task) {
+            return Axios().patch(`tasks/${task._id}`, task)
+            .then(() => {
+                commit('toggleEdit', task);
+            });
+        },
+        deleteTask({ commit }, task) {
+            return Axios().delete(`tasks/${task._id}`)
+            .then(() => {
+                commit('removeTask', task);
+            });
+        },
     },
     mutations: {
         setTasks(state, tasks) {
@@ -42,7 +54,10 @@ export default {
         },
         toggleEdit(state, task) {
             state.isEditMode = !state.isEditMode;
-            Vue.set(state, 'isEditMode', state.isEditMode);
+            Vue.set(task, 'isEditMode', state.isEditMode);
+        },
+        removeTask(state, task) {
+            state.tasks.splice(state.tasks.indexOf(task), 1);
         },
     },
     getters: {

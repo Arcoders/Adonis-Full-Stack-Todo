@@ -41,8 +41,8 @@ export default {
 
     methods: {
 
-        ...mapActions('tasks', ['createTask']),
-        ...mapMutations('tasks', ['setNewTaskName']),
+        ...mapActions('tasks', ['createTask', 'deleteTask', 'saveTask']),
+        ...mapMutations('tasks', ['setNewTaskName', 'setTaskDescription', 'toggleEdit']),
 
     },
 
