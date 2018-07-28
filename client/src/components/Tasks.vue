@@ -22,6 +22,7 @@
         </div>
 
         <CreateRecord
+            v-if="currentProject"
             placeholder="I need to..."
             @onInput="setNewTaskName"
             :value="newTaskName"
@@ -58,6 +59,7 @@ export default {
     computed: {
 
         ...mapState('tasks', ['tasks', 'newTaskName']),
+        ...mapState('projects', ['currentProject']),
 
     }
 

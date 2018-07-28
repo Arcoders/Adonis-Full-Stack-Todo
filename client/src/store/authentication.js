@@ -49,31 +49,21 @@ export default {
         },
     },
     mutations: {
-        setRegisterEmail(state, email) {
-            state.registerEmail = email;
-        },
-        setRegisterPassword(state, password) {
-            state.registerPassword = password;
-        },
-        setToken(state, token) {
-            state.token = token;
-        },
-        setRegisterError(state, error) {
-            state.registerError = error;
-        },
-        setLoginEmail(state, email) {
-            state.loginEmail = email;
-        },
-        setLoginPassword(state, password) {
-            state.loginPassword = password;
-        },
-        setLoginError(state, error) {
-            state.loginError = error;
-        },
+        setRegisterEmail: (state, email) => state.registerEmail = email,
+
+        setRegisterPassword: (state, password) => state.registerPassword = password,
+
+        setToken: (state, token) => state.token = token,
+
+        setRegisterError: (state, error) => state.registerError = error,
+
+        setLoginEmail: (state, email) => state.loginEmail = email,
+
+        setLoginPassword: (state, password) => state.loginPassword = password,
+
+        setLoginError: (state, error) => state.loginError = error,
     },
     getters: {
-        isLoggedIn(state) {
-            return !!state.token;
-        }
+        isLoggedIn: (state) => !!state.token,
     },
 };

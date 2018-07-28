@@ -41,27 +41,21 @@ export default {
         },
     },
     mutations: {
-        setNewProjectName(state, name) {
-            state.newProjectName = name;
-        },
-        appendProject(state, project) {
-            state.projects.push(project);
-        },
-        setProjects(state, projects) {
-            state.projects = projects;
-        },
-        setProjectTitle(state, { project, title }) {
-            project.title = title;
-        },
+        setNewProjectName: (state, name) => state.newProjectName = name,
+
+        appendProject: (state, project) => state.projects.push(project),
+
+        setProjects: (state, projects) => state.projects = projects,
+
+        setProjectTitle: (state, { project, title }) => project.title = title,
+
+        removeProject: (state, project) => state.projects.splice(state.projects.indexOf(project), 1),
+
+        setCurrentProject: (state, project) => state.currentProject = project,
+
         toggleEdit(state, project) {
             state.isEditMode = !state.isEditMode;
             Vue.set(project, 'isEditMode', state.isEditMode);
-        },
-        removeProject(state, project) {
-            state.projects.splice(state.projects.indexOf(project), 1);
-        },
-        setCurrentProject(state, project) {
-            state.currentProject = project;
         },
     },
     getters: {

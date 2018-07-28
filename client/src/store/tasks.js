@@ -40,27 +40,21 @@ export default {
         },
     },
     mutations: {
-        setTasks(state, tasks) {
-            state.tasks = tasks;
-        },
-        setNewTaskName(state, newTaskName) {
-            state.newTaskName = newTaskName;
-        },
-        appendTask(state, task) {
-            state.tasks.push(task);
-        },
-        setTaskDescription(state, { task, description }) {
-            task.description = description;
-        },
+        setTasks: (state, tasks) => state.tasks = tasks,
+        
+        setNewTaskName: (state, newTaskName) => state.newTaskName = newTaskName,
+
+        appendTask: (state, task) => state.tasks.push(task),
+
+        setTaskDescription: (state, { task, description }) => task.description = description,
+
+        removeTask: (state, task) => state.tasks.splice(state.tasks.indexOf(task), 1),
+
+        toggleCompleted : (state, task) => task.completed = !task.completed,
+
         toggleEdit(state, task) {
             state.isEditMode = !state.isEditMode;
             Vue.set(task, 'isEditMode', state.isEditMode);
-        },
-        removeTask(state, task) {
-            state.tasks.splice(state.tasks.indexOf(task), 1);
-        },
-        toggleCompleted(state, task) {
-            task.completed = !task.completed;
         },
     },
     getters: {
