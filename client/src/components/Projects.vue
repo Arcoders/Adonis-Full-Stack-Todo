@@ -16,11 +16,12 @@
             </v-layout>
         </div>
 
-        <v-text-field @input="setNewProjectName" :value="newProjectName" placeholder="My project name..."></v-text-field>
-        <v-btn @click="createProject" dark color="teal lighten-1">
-            <v-icon class="mr-2">add_circle</v-icon>    
-            Create
-        </v-btn>
+        <CreateRecord
+            placeholder="My project name..."
+            @onInput="setNewProjectName"
+            :value="newProjectName"
+            @create="createProject"
+        />
 
     </Panel>
     
@@ -29,8 +30,11 @@
 <script>
 
 import { mapMutations, mapState, mapActions } from 'vuex';
+import CreateRecord from '@/components/CreateRecord.vue';
 
 export default {
+
+    components: { CreateRecord },
 
     mounted () {
         this.fetchProjects();
