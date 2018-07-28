@@ -6,6 +6,7 @@ import Axios from '../http';
 export default {
     namespaced: true,
     state: {
+        currentProject: null,
         projects: [],
         newProjectName: null,
         isEditMode: false,
@@ -58,6 +59,9 @@ export default {
         },
         removeProject(state, project) {
             state.projects.splice(state.projects.indexOf(project), 1);
+        },
+        setCurrentProject(state, project) {
+            state.currentProject = project;
         },
     },
     getters: {

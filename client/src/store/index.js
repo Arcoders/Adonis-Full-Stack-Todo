@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import createPresistedState from 'vuex-persistedstate';
 import authentication from './authentication';
 import projects from './projects';
+import tasks from './tasks';
 
 Vue.use(Vuex);
 
@@ -14,6 +15,7 @@ export default new Vuex.Store({
   modules: {
     authentication,
     projects,
+    tasks,
   },
   mutations: {
 

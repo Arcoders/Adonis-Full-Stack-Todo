@@ -7,8 +7,8 @@
         <Projects></Projects>
       </v-flex>
 
-      <v-flex xs8 class="pl-4">
-        <Panel title="Tasks"></Panel>
+      <v-flex  xs8 class="pl-4">
+        <Tasks></Tasks>
       </v-flex>
 
     </v-layout>
@@ -19,12 +19,13 @@
 <script>
 
 import Projects from '@/components/Projects.vue';
+import Tasks from '@/components/Tasks.vue';
 import { mapGetters } from 'vuex';
 import router from '../router';
 
 export default {
 
-  components: { Projects },
+  components: { Projects, Tasks },
 
   mounted() {
     if (!this.isLoggedIn) return router.push('/login');

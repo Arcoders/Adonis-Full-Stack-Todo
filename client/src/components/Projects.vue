@@ -2,7 +2,7 @@
     
     <Panel title="Projects">
 
-        <div v-for="project in projects" :key="project._id" class="mb-4">
+        <div v-for="project in projects" :key="project._id" class="mb-4 mt-2">
             
             <EditableRecord
                 :isEditMode="project.isEditMode"
@@ -11,6 +11,7 @@
                 @onEdit="toggleEdit(project)"
                 @onSave="saveProject(project)"
                 @onDelete="deleteProject(project)"
+                @onClick="projectClicked(project)"
             />
 
         </div>
@@ -42,8 +43,14 @@ export default {
   
     methods: {
 
-        ...mapMutations('projects', ['setProjectTitle', 'setNewProjectName', 'toggleEdit']),
+        ...mapMutations('projects', ['setProjectTitle', 'setNewProjectName', 'toggleEdit', 'setCurrentProject']),
         ...mapActions('projects', ['deleteProject', 'saveProject', 'createProject', 'fetchProjects']),
+        ...mapActions('tasks', ['fetchTasksForProject']),
+
+        projectClicked(project) {
+            this.setCurrentProject(project);
+            this.fetchTasksForProject(project);
+        },
 
     },
 
