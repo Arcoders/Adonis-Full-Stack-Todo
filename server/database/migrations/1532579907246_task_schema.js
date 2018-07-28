@@ -4,15 +4,12 @@ const Schema = use('Schema')
 
 class TaskSchema extends Schema {
   up () {
-    this.create('tasks', (table) => {
-      table.increments()
+    this.create('tasks', (collection) => {
 
-      table.string('description', 255)
-      table.integer('project_id').unsigned()
-      table.foreign('project_id').references('projects.id')
-      table.boolean('completed').default(false)
+      collection.index('description', {description: 1})
+      collection.index('project_id', {title: 1})
+      collection.index('completed', {title: 1})
 
-      table.timestamps()
     })
   }
 

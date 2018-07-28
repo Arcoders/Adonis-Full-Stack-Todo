@@ -4,14 +4,11 @@ const Schema = use('Schema')
 
 class ProjectSchema extends Schema {
   up () {
-    this.create('projects', (table) => {
-      table.increments()
+    this.create('projects', (collection) => {
 
-      table.string('title', 255)
-      table.integer('user_id').unsigned()
-      table.foreign('user_id').references('users.id')
+      collection.index('title', {title: 1})
+      collection.index('user_id', {user_id: 1})
 
-      table.timestamps()
     })
   }
 
