@@ -11,8 +11,7 @@
                 @onInput="setTaskDescription({ task, description: $event })"
                 @onEdit="toggleEdit(task)"
                 @onSave="saveTask(task)"
-                @onDelete="deleteTask(task)"
-                @onClick="taskClicked(task)">
+                @onDelete="deleteTask(task)">
 
                 <v-icon @click="checkClicked(task)" class="mr-2">
                    {{ task.completed ? 'check_box' : 'check_box_outline_blank' }} 

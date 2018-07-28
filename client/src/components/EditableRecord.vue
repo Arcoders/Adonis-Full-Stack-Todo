@@ -9,7 +9,7 @@
             :value="title" 
             autofocus>
             </v-text-field>
-            <a v-else @click="$emit('onClick')">{{ title }}</a>
+            <span v-else @click="$emit('onClick')">{{ title }}</span>
         </v-flex>
         <v-flex xs3 class="text-xs-right">
             <span v-if="isEditMode">
