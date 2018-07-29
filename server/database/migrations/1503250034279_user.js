@@ -6,8 +6,8 @@ class UserSchema extends Schema {
   up () {
     this.create('users', (collection) => {
 
-      collection.index('username', {username: 1}, {unique: true})
       collection.index('email', {email: 1}, {unique: true})
+      collection.index('username', {username: 1}, {unique: true})
       collection.index('password', {password: 1}, {unique: true})
       
     })

@@ -23,6 +23,7 @@ export default {
             .then(({ data }) => {
                 commit('setToken', data.token);
                 commit('setRegisterError', null);
+                commit('setRegisterPassword', null);
                 router.push('/')
             })
             .catch(() => {
@@ -37,14 +38,15 @@ export default {
             .then(({ data }) => {
                 commit('setToken', data.token);
                 commit('setLoginError', null);
+                commit('setLoginPassword', null);
                 router.push('/')
             })
             .catch(() => {
                 commit('setLoginError', 'An error has occurred');
             });
         },
-        logout({ commit }) {
-            commit('setToken', null);
+        logout({ commit, rootState }) {
+            commit('resetApp', rootState);
             router.push('/login');
         },
     },
@@ -62,6 +64,12 @@ export default {
         setLoginPassword: (state, password) => state.loginPassword = password,
 
         setLoginError: (state, error) => state.loginError = error,
+
+        resetApp: (state, rootState) => {
+            rootState.authentication.token = null
+            rootState.projects.currentProject = null
+            rootState.tasks.tasks = []
+        }
     },
     getters: {
         isLoggedIn: (state) => !!state.token,
